@@ -1,0 +1,145 @@
+/* Custom Stitch Theme & Print Styles */
+
+:root {
+    --stitch-primary: #0f49bd;
+    --stitch-bg-dark: #0a0e17;
+    --stitch-card-dark: #161b22;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Animation for cards */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        margin: 1.5cm;
+    }
+
+    html, body {
+        height: auto !important;
+        overflow: visible !important;
+        background-color: white !important;
+        color: black !important;
+        font-size: 11pt;
+    }
+
+    /* Reset layout constraints */
+    .h-screen, .h-full, .min-h-screen {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .overflow-hidden, .overflow-y-auto, .overflow-x-hidden {
+        overflow: visible !important;
+    }
+
+    .flex {
+        display: block !important;
+    }
+
+    /* Hide UI elements */
+    aside, nav, header, button, .no-print, #lang-toggle, .material-symbols-outlined {
+        display: none !important;
+    }
+
+    main {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+
+    /* Section adjustments */
+    section {
+        break-inside: avoid;
+        margin-bottom: 2rem !important;
+        padding: 1.5rem !important;
+        border: 1px solid #eee !important;
+        background: white !important;
+        box-shadow: none !important;
+    }
+
+    #dashboard {
+        background-image: none !important;
+        background-color: #f8fafc !important; /* Very light gray for visibility */
+        border-bottom: 2px solid #0f49bd !important;
+    }
+
+    .bg-slate-900, .bg-slate-950, .bg-card-dark, .bg-slate-800 {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .text-white, .text-slate-100, .text-slate-300, .text-slate-400 {
+        color: black !important;
+    }
+
+    .text-primary {
+        color: #0f49bd !important;
+    }
+
+    .border-slate-800, .border-slate-700 {
+        border-color: #eee !important;
+    }
+
+    /* Timeline adjustments */
+    .before\:via-slate-800::before {
+        display: none !important;
+    }
+
+    .md\:w-\[calc\(50\%-2\.5rem\)\] {
+        width: 100% !important;
+    }
+
+    /* Grid to single column for print */
+    .grid {
+        display: block !important;
+    }
+
+    .grid-cols-1, .md\:grid-cols-2, .lg\:grid-cols-4 {
+        display: block !important;
+    }
+
+    .gap-6, .gap-8 {
+        gap: 0 !important;
+    }
+
+    .project-card, .achievement-card, .achievement-item {
+        margin-bottom: 1.5rem !important;
+        page-break-inside: avoid;
+    }
+}

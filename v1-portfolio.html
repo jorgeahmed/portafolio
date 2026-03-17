@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Lopez | Portfolio Freelance</title>
+    <meta name="description" content="Portfolio de Jorge Lopez, Desarrollador Full-Stack especializado en soluciones para Upwork y Freelancer.">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <section class="hero container">
+            <h1 class="fade-in">Jorge Lopez</h1>
+            <p class="fade-in" style="animation-delay: 0.2s;">Desarrollador Full-Stack & Experto en Automatización</p>
+            <div class="hero-cta fade-in" style="animation-delay: 0.4s;">
+                <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                <a href="https://www.linkedin.com/in/jorgelaveaga/" class="btn glass" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="featured" class="projects container">
+            <h2 class="fade-in">Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <!-- Project 1: QuoteBot -->
+                <div class="project-card glass fade-in">
+                    <div class="badge">AI & Automation</div>
+                    <h3>QuoteBot Vision</h3>
+                    <p>Sistema inteligente de cotizaciones con IA, integrando Flutter, Hono.js y pagos con MercadoPago. Optimiza el flujo de ventas con automatización avanzada.</p>
+                    <div class="tags">
+                        <span>Flutter</span>
+                        <span>Node.js</span>
+                        <span>AI</span>
+                    </div>
+                </div>
+                <!-- Project 2: Shopify -->
+                <div class="project-card glass fade-in" style="animation-delay: 0.2s;">
+                    <div class="badge">E-commerce</div>
+                    <h3>Shopify Industrial Theme</h3>
+                    <p>Desarrollo de temas premium para Shopify con estética industrial técnica. Enfoque en secciones dinámicas, rendimiento y experiencia de usuario profesional.</p>
+                    <div class="tags">
+                        <span>Liquid</span>
+                        <span>CSS3</span>
+                        <span>Shopify</span>
+                    </div>
+                </div>
+                <!-- Project 3: Pomodoro -->
+                <div class="project-card glass fade-in" style="animation-delay: 0.4s;">
+                    <div class="badge">Productivity</div>
+                    <h3>Pomodoro RBR</h3>
+                    <p>Herramienta avanzada de productividad con un diseño minimalista y efectos visuales modernos. Desplegado en Railway con backend optimizado.</p>
+                    <div class="tags">
+                        <span>Javascript</span>
+                        <span>UI/UX</span>
+                        <span>Deployment</span>
+                    </div>
+                </div>
+                <!-- Project 4: CCTV Proposals -->
+                <div class="project-card glass fade-in" style="animation-delay: 0.6s;">
+                    <div class="badge">Project Management</div>
+                    <h3>CCTV Proposal System</h3>
+                    <p>Sistema de gestión y generación de propuestas técnicas para proyectos de seguridad (CCTV Pinfra). Enfoque en precisión técnica y presentación profesional.</p>
+                    <div class="tags">
+                        <span>Documentation</span>
+                        <span>Technical Sales</span>
+                        <span>CCTV</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects container">
+            <h2 class="fade-in">Más de GitHub</h2>
+            <div id="github-projects" class="projects-grid">
+                <!-- Data will be loaded via main.js -->
+                <div class="project-card glass">
+                    <p>Cargando repositorios...</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="container" style="text-align: center; padding: 3rem 0; color: #666;">
+            <p>&copy; 2026 Jorge Lopez. Disponible para trabajo remoto en Upwork y Freelancer.</p>
+        </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
