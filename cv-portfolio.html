@@ -170,15 +170,64 @@
                         </div>
                     </section>
 
-                    <!-- Stats / Key Metrics -->
+                    <!-- Executive Dashboard / KPI Section -->
+                    <section id="dashboard-stats" class="bg-card-dark border border-slate-800 rounded-2xl p-8 space-y-8 fade-in-up" style="animation-delay: 0.15s;">
+                        <h2 class="text-xl font-bold text-white flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">monitoring</span> <span data-i18n="dashboard_title">Dashboard de Indicadores</span>
+                        </h2>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- KPI: Success Rate -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-end">
+                                    <span data-i18n="kpi_success" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Tasa de Éxito</span>
+                                    <span class="text-xl font-black text-white">98%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-[98%] rounded-full shadow-[0_0_10px_rgba(15,73,189,0.5)]"></div>
+                                </div>
+                            </div>
+                            <!-- KPI: Budget -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-end">
+                                    <span data-i18n="kpi_budget" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Eficiencia Presupuesto</span>
+                                    <span class="text-xl font-black text-white">95%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-emerald-500 w-[95%] rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                                </div>
+                            </div>
+                            <!-- KPI: Safety -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-end">
+                                    <span data-i18n="kpi_safety" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Seguridad Industrial</span>
+                                    <span class="text-xl font-black text-white">100%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-400 w-full rounded-full shadow-[0_0_10px_rgba(96,165,250,0.5)]"></div>
+                                </div>
+                            </div>
+                            <!-- KPI: On-Time -->
+                            <div class="flex flex-col gap-2">
+                                <div class="flex justify-between items-end">
+                                    <span data-i18n="kpi_delivery" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Entrega a Tiempo</span>
+                                    <span class="text-xl font-black text-white">97%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-[97%] rounded-full shadow-[0_0_10px_rgba(15,73,189,0.5)]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Large Stats / Key Metrics -->
                     <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 fade-in-up" style="animation-delay: 0.1s;">
                         <div class="bg-card-dark border border-slate-800 p-6 rounded-2xl flex flex-col items-center text-center">
-                            <span class="text-3xl font-black text-white">$50M+</span>
+                            <span class="text-3xl font-black text-white">$55M+</span>
                             <span data-i18n="stats_budgets" class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">Presupuestos Gestionados</span>
                         </div>
                         <div class="bg-card-dark border border-slate-800 p-6 rounded-2xl flex flex-col items-center text-center">
-                            <span class="text-3xl font-black text-white">200+</span>
-                            <span data-i18n="stats_engineers" class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">Ingenieros Liderados</span>
+                            <span class="text-3xl font-black text-white">150+</span>
+                            <span data-i18n="stats_projects" class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">Proyectos Ejecutados (Sodexo)</span>
                         </div>
                         <div class="bg-card-dark border border-slate-800 p-6 rounded-2xl flex flex-col items-center text-center">
                             <span class="text-3xl font-black text-white">15+</span>
@@ -236,47 +285,79 @@
                         </h2>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Project Card 1: QuoteBot -->
+                            <!-- Project: Daimler -->
                             <div class="group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl">
-                                <div class="h-48 bg-slate-800 relative overflow-hidden">
+                                <div class="h-32 bg-slate-800 relative overflow-hidden">
                                      <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
                                      <div class="absolute inset-0 flex items-center justify-center">
-                                         <span class="material-symbols-outlined text-5xl text-primary/40">smart_toy</span>
+                                         <span class="material-symbols-outlined text-4xl text-primary/40">factory</span>
                                      </div>
                                 </div>
-                                <div class="p-6 space-y-4">
+                                <div class="p-6 space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <h3 data-i18n="daimler_title" class="font-bold text-lg text-white">Daimler Santiago</h3>
+                                        <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">$8.1M MXN</span>
+                                    </div>
+                                    <p data-i18n="daimler_desc" class="text-slate-400 text-xs leading-relaxed">
+                                        Desmantelamiento de líneas de pintura y reforzamiento estructural con 100% cumplimiento reglamentario.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Project: Tren Maya -->
+                            <div class="group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl">
+                                <div class="h-32 bg-slate-800 relative overflow-hidden">
+                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                                     <div class="absolute inset-0 flex items-center justify-center">
+                                         <span class="material-symbols-outlined text-4xl text-primary/40">train</span>
+                                     </div>
+                                </div>
+                                <div class="p-6 space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <h3 data-i18n="trenmaya_title" class="font-bold text-lg text-white">Tren Maya</h3>
+                                        <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Infraestructura</span>
+                                    </div>
+                                    <p data-i18n="trenmaya_desc" class="text-slate-400 text-xs leading-relaxed">
+                                        Suministro e instalación de biodigestores industriales y registros de lodos en Talleres y Cocheras.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Project Card 1: QuoteBot -->
+                            <div class="group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl">
+                                <div class="h-32 bg-slate-800 relative overflow-hidden">
+                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                                     <div class="absolute inset-0 flex items-center justify-center">
+                                         <span class="material-symbols-outlined text-4xl text-primary/40">smart_toy</span>
+                                     </div>
+                                </div>
+                                <div class="p-6 space-y-3">
                                     <div class="flex items-center justify-between">
                                         <h3 data-i18n="qb_vision" class="font-bold text-lg text-white">QuoteBot Vision</h3>
                                         <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">AI & Flutter</span>
                                     </div>
-                                    <p data-i18n="qb_desc" class="text-slate-400 text-sm leading-relaxed">
-                                        Sistema inteligente de cotizaciones que integra visión por computadora y pasarelas de pago para automatizar flujos de venta complejos.
+                                    <p data-i18n="qb_desc" class="text-slate-400 text-xs leading-relaxed">
+                                        Sistema inteligente que integra visión por computadora y pasarelas de pago.
                                     </p>
-                                    <div class="flex gap-2 text-xs font-mono text-slate-500">
-                                        <span>#Hono.js</span> <span>#MercadoPago</span>
-                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Project Card 2: Shopify -->
+                            <!-- Project: UZUMA -->
                             <div class="group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl">
-                                <div class="h-48 bg-slate-800 relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-5xl text-primary/40">shopping_cart</span>
-                                    </div>
+                                <div class="h-32 bg-slate-800 relative overflow-hidden">
+                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                                     <div class="absolute inset-0 flex items-center justify-center">
+                                         <span class="material-symbols-outlined text-4xl text-primary/40">directions_car</span>
+                                     </div>
                                 </div>
-                                <div class="p-6 space-y-4">
+                                <div class="p-6 space-y-3">
                                     <div class="flex items-center justify-between">
-                                        <h3 data-i18n="shopify_title" class="font-bold text-lg text-white">E-commerce Industrial</h3>
-                                        <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Shopify Liquid</span>
+                                        <h3 data-i18n="uzuma_title" class="font-bold text-lg text-white">Tabasco UZUMA</h3>
+                                        <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">IoT / LPR</span>
                                     </div>
-                                    <p data-i18n="shopify_desc" class="text-slate-400 text-sm leading-relaxed">
-                                        Temas premium personalizados para Shopify con enfoque en estética industrial de alta gama y conversiones optimizadas.
+                                    <p data-i18n="uzuma_desc" class="text-slate-400 text-xs leading-relaxed">
+                                        Gestión de estacionamiento automatizado y red LORA para flujómetros.
                                     </p>
-                                    <div class="flex gap-2 text-xs font-mono text-slate-500">
-                                        <span>#UX/UI</span> <span>#B2B</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

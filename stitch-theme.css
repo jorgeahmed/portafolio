@@ -43,10 +43,10 @@ html {
     }
 }
 
-/* Print Styles */
+/* Harvard Style CV Print Format */
 @media print {
     @page {
-        margin: 1.5cm;
+        margin: 2cm;
     }
 
     html, body {
@@ -54,16 +54,15 @@ html {
         overflow: visible !important;
         background-color: white !important;
         color: black !important;
+        font-family: "Times New Roman", Times, serif !important;
         font-size: 11pt;
+        line-height: 1.4;
     }
 
-    /* Reset layout constraints */
-    .h-screen, .h-full, .min-h-screen {
+    /* Layout Resets */
+    .h-screen, .h-full, .min-h-screen, .overflow-hidden, .overflow-y-auto {
         height: auto !important;
         min-height: 0 !important;
-    }
-
-    .overflow-hidden, .overflow-y-auto, .overflow-x-hidden {
         overflow: visible !important;
     }
 
@@ -71,8 +70,7 @@ html {
         display: block !important;
     }
 
-    /* Hide UI elements */
-    aside, nav, header, button, .no-print, #lang-toggle, .material-symbols-outlined {
+    aside, nav, header, button, .no-print, .material-symbols-outlined {
         display: none !important;
     }
 
@@ -83,63 +81,131 @@ html {
         display: block !important;
     }
 
-    /* Section adjustments */
-    section {
-        break-inside: avoid;
-        margin-bottom: 2rem !important;
-        padding: 1.5rem !important;
-        border: 1px solid #eee !important;
+    /* Header Section */
+    #dashboard {
+        text-align: center;
+        border: none !important;
         background: white !important;
+        padding: 0 0 1rem 0 !important;
+        margin-bottom: 2rem !important;
+        border-bottom: 1.5pt solid black !important;
+    }
+
+    #dashboard img {
+        display: none !important; /* Resumes typically don't have photos in Harvard format */
+    }
+
+    #dashboard h1 {
+        font-size: 22pt !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        color: black !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    #dashboard p {
+        font-size: 11pt !important;
+        font-weight: bold !important;
+        color: black !important;
+    }
+
+    .flex-wrap {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+    }
+
+    /* Section Headers */
+    section h2 {
+        font-size: 13pt !important;
+        text-transform: uppercase !important;
+        font-weight: bold !important;
+        border-bottom: 0.75pt solid black !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.75rem !important;
+        color: black !important;
+        display: block !important;
+    }
+
+    /* Remove cards and use classic listing */
+    section, .bg-card-dark, .bg-slate-900 {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 0 1rem 0 !important;
         box-shadow: none !important;
     }
 
-    #dashboard {
-        background-image: none !important;
-        background-color: #f8fafc !important; /* Very light gray for visibility */
-        border-bottom: 2px solid #0f49bd !important;
-    }
-
-    .bg-slate-900, .bg-slate-950, .bg-card-dark, .bg-slate-800 {
-        background-color: white !important;
-        color: black !important;
-    }
-
-    .text-white, .text-slate-100, .text-slate-300, .text-slate-400 {
-        color: black !important;
-    }
-
-    .text-primary {
-        color: #0f49bd !important;
-    }
-
-    .border-slate-800, .border-slate-700 {
-        border-color: #eee !important;
-    }
-
-    /* Timeline adjustments */
+    /* Timeline to List */
     .before\:via-slate-800::before {
         display: none !important;
     }
 
-    .md\:w-\[calc\(50\%-2\.5rem\)\] {
-        width: 100% !important;
+    .relative.flex.items-center {
+        margin-bottom: 1.2rem !important;
+        display: block !important;
     }
 
-    /* Grid to single column for print */
+    .w-10.h-10.rounded-full {
+        display: none !important;
+    }
+
+    .md\:w-\[calc\(50\%-2\.5rem\)\], .w-\[calc\(100\%-4rem\)\] {
+        width: 100% !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    .flex.items-center.justify-between.space-x-2 {
+        display: flex !important;
+        justify-content: space-between !important;
+        font-weight: bold !important;
+        border-bottom: 0.5pt solid #eee !important;
+        padding-bottom: 2pt !important;
+        margin-bottom: 4pt !important;
+    }
+
+    /* Project List */
     .grid {
         display: block !important;
     }
 
-    .grid-cols-1, .md\:grid-cols-2, .lg\:grid-cols-4 {
-        display: block !important;
-    }
-
-    .gap-6, .gap-8 {
-        gap: 0 !important;
-    }
-
-    .project-card, .achievement-card, .achievement-item {
-        margin-bottom: 1.5rem !important;
+    .group.bg-card-dark {
+        margin-bottom: 1rem !important;
         page-break-inside: avoid;
+    }
+
+    .h-32.bg-slate-800, .px-2.py-1.bg-primary\/10 {
+        display: none !important;
+    }
+
+    h3 {
+        font-size: 11pt !important;
+        font-weight: bold !important;
+    }
+
+    /* Hide Dashboard stats in print, redundant for Harvard CV */
+    #dashboard-stats {
+        display: none !important;
+    }
+
+    /* Skills in a row */
+    #skills .grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1rem !important;
+    }
+
+    #skills ul {
+        list-style: none !important;
+        padding: 0 !important;
+    }
+
+    #skills li {
+        margin-bottom: 2pt !important;
+    }
+
+    .page-break {
+        page-break-before: always;
     }
 }
