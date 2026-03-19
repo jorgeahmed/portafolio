@@ -62,7 +62,12 @@ window.translations = {
         cat_industrial: "Mantenimiento Industrial",
         cat_infra: "Infraestructura",
         cat_automation: "Automatización & IoT",
-        cat_all: "Todos"
+        cat_all: "Todos",
+        client_dashboard: "Dashboard de Clientes",
+        client_sodexo: "Sodexo (150+ Proyectos)",
+        client_daimler: "Daimler ($8.1M MXN)",
+        client_bbva: "BBVA | IA Sísmica",
+        client_summary: "Indicadores de Impacto y Confianza por Cliente"
     },
     en: {
         title: "Jorge G. Lopez Laveaga | Professional CV & Portfolio",
@@ -127,6 +132,11 @@ window.translations = {
         cat_industrial: "Industrial Maint.",
         cat_infra: "Infrastructure",
         cat_automation: "Automation & IoT",
-        cat_all: "All"
+        cat_all: "All",
+        client_dashboard: "Client Dashboard",
+        client_sodexo: "Sodexo (150+ Projects)",
+        client_daimler: "Daimler ($480k USD High)",
+        client_bbva: "BBVA | Seismic AI",
+        client_summary: "Impact & Trust Indicators by Key Client"
     }
 };
