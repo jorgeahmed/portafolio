@@ -111,10 +111,15 @@
                         <div class="absolute inset-0 opacity-20" style='background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"); background-size: cover; background-position: center;'></div>
                         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent"></div>
                         <div class="relative z-10 p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center">
-                            <div class="size-40 rounded-2xl border-4 border-slate-800 overflow-hidden shrink-0 shadow-2xl">
-                                <img alt="Jorge Profile" class="w-full h-full object-cover" src="https://github.com/jorgeahmed.png"/>
+                            <!-- GitHub Profile Photo -->
+                            <div class="size-40 rounded-2xl border-4 border-slate-800 overflow-hidden shrink-0 shadow-2xl relative group">
+                                <img alt="GitHub Profile" class="w-full h-full object-cover" src="https://github.com/jorgeahmed.png"/>
+                                <div class="absolute bottom-2 right-2 size-6 bg-slate-900 border border-slate-700 rounded flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-white">GH</span>
+                                </div>
                             </div>
-                            <div class="flex flex-col gap-4 text-center md:text-left">
+                            
+                            <div class="flex-1 flex flex-col gap-4 text-center md:text-left">
                                 <div class="space-y-1">
                                     <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white line-height-tight">Jorge G. Lopez Laveaga</h1>
                                     <p data-i18n="hero_role" class="text-primary font-bold text-sm tracking-wide uppercase">Senior Technology & Infrastructure Project Manager</p>
@@ -134,6 +139,14 @@
                                             <span class="material-symbols-outlined text-sm">mail</span> Gmail
                                         </a>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- LinkedIn Profile Photo (Right Side) -->
+                            <div class="size-40 rounded-2xl border-4 border-blue-600/30 overflow-hidden shrink-0 shadow-2xl relative group hidden md:block">
+                                <img alt="LinkedIn Profile" class="w-full h-full object-cover" src="https://static.licdn.com/aero-v1/sc/h/9c8pery4andzj6ohv969569u0"/>
+                                <div class="absolute bottom-2 right-2 size-6 bg-[#0077b5] border border-blue-400 rounded flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-white">LI</span>
                                 </div>
                             </div>
                         </div>
