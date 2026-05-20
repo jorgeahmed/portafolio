@@ -122,7 +122,7 @@
                             <div class="flex-1 flex flex-col gap-4 text-center md:text-left">
                                 <div class="space-y-1">
                                     <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white line-height-tight">Jorge G. Lopez Laveaga</h1>
-                                    <p data-i18n="hero_role" class="text-primary font-bold text-sm tracking-wide uppercase">Senior Technology & Infrastructure Project Manager</p>
+                                    <p data-i18n="hero_role" class="text-primary font-bold text-sm tracking-wide uppercase">Tech Project Manager | IA · IoT · Infraestructura Crítica Corporativa</p>
                                 </div>
                                 <p data-i18n="hero_desc" class="text-slate-400 text-md md:text-lg leading-relaxed max-w-2xl">
                                     Líder estratégico con más de 15 años de experiencia impulsando la transformación digital en IoT, IA e infraestructura de telecomunicaciones a escala global.
@@ -402,13 +402,134 @@
                             <!-- Category Filter -->
                             <div class="flex flex-wrap gap-2 no-print">
                                 <button class="filter-btn active px-4 py-1.5 rounded-full bg-primary text-white text-[10px] font-bold uppercase tracking-wider transition-all shadow-lg shadow-primary/20" data-filter="all" data-i18n="cat_all">Todos</button>
+                                <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] font-bold uppercase tracking-wider transition-all" data-filter="corporate" data-i18n="cat_corporate">Corporativo</button>
                                 <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] font-bold uppercase tracking-wider transition-all" data-filter="infra" data-i18n="cat_infra">Infraestructura</button>
-                                <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] font-bold uppercase tracking-wider transition-all" data-filter="automation" data-i18n="cat_automation">Automatización</button>
+                                <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] font-bold uppercase tracking-wider transition-all" data-filter="automation" data-i18n="cat_automation">IoT & Smart City</button>
                                 <button class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 text-[10px] font-bold uppercase tracking-wider transition-all" data-filter="industrial" data-i18n="cat_industrial">Industrial</button>
                             </div>
                         </div>
                         
                         <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500">
+
+                            <!-- BBVA — Corporativo Destacado -->
+                            <div class="project-entry group bg-card-dark border border-primary/30 rounded-2xl overflow-hidden hover:border-primary/70 transition-all shadow-xl hover:-translate-y-1 relative" data-category="corporate">
+                                <div class="absolute top-3 right-3 px-2 py-0.5 bg-primary/20 text-primary text-[9px] font-bold uppercase tracking-widest rounded-full">IA Crítica</div>
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="size-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                            <span class="material-symbols-outlined">account_balance</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="bbva_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">BBVA México | Sistema de Alerta Sísmica con IA</h3>
+                                        <p data-i18n="bbva_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">PM de implementación de sistema crítico de IA para infraestructura bancaria.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-full font-bold">IA · Edge ML</span>
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Banca Corporativa</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Daimler — Corporativo Destacado -->
+                            <div class="project-entry group bg-card-dark border border-primary/30 rounded-2xl overflow-hidden hover:border-primary/70 transition-all shadow-xl hover:-translate-y-1 relative" data-category="corporate">
+                                <div class="absolute top-3 right-3 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold uppercase tracking-widest rounded-full">$8.1M MXN</div>
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="size-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400">
+                                            <span class="material-symbols-outlined">precision_manufacturing</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="daimler_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">Daimler Santiago | Desmantelamiento Industrial</h3>
+                                        <p data-i18n="daimler_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">PM de proyecto $8.1M MXN. 100% cumplimiento en seguridad Daimler.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full font-bold">100% Seguridad</span>
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Automotriz</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sodexo — Corporativo Destacado -->
+                            <div class="project-entry group bg-card-dark border border-primary/30 rounded-2xl overflow-hidden hover:border-primary/70 transition-all shadow-xl hover:-translate-y-1 relative" data-category="corporate">
+                                <div class="absolute top-3 right-3 px-2 py-0.5 bg-primary/20 text-primary text-[9px] font-bold uppercase tracking-widest rounded-full">150+ Proyectos</div>
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                            <span class="material-symbols-outlined">corporate_fare</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="sodexo_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">Sodexo México | Portafolio 150+ Proyectos</h3>
+                                        <p data-i18n="sodexo_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">Gestión de portafolio multimillonario para clientes Fortune 500.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-primary/10 text-primary rounded-full font-bold">$50M+ USD</span>
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Fortune 500</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- QuoteBot Vision -->
+                            <div class="project-entry group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl hover:-translate-y-1" data-category="corporate">
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="size-10 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-400">
+                                            <span class="material-symbols-outlined">smart_toy</span>
+                                        </div>
+                                        <span class="text-[9px] font-bold text-slate-600 uppercase tracking-widest" data-i18n="cat_corporate">Corporativo</span>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="quotebot_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">QuoteBot Vision | IA para Cotizaciones</h3>
+                                        <p data-i18n="quotebot_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">PM y arquitecto: cotizaciones de obra en 2 min con Gemini Vision AI.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Gemini AI</span>
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Flutter</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tren Maya -->
+                            <div class="project-entry group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl hover:-translate-y-1" data-category="infra">
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="size-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                            <span class="material-symbols-outlined">train</span>
+                                        </div>
+                                        <span class="text-[9px] font-bold text-slate-600 uppercase tracking-widest" data-i18n="cat_infra">Infraestructura</span>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="trenmaya_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">Tren Maya | Infraestructura Crítica Nacional</h3>
+                                        <p data-i18n="trenmaya_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">PM de suministro. Proyecto más grande de México. $2.1M MXN.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">Gobierno Federal</span>
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">$2.1M MXN</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UZUMA -->
+                            <div class="project-entry group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl hover:-translate-y-1" data-category="automation">
+                                <div class="p-6 space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div class="size-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                            <span class="material-symbols-outlined">sensors</span>
+                                        </div>
+                                        <span class="text-[9px] font-bold text-slate-600 uppercase tracking-widest" data-i18n="cat_automation">IoT & Smart City</span>
+                                    </div>
+                                    <div>
+                                        <h3 data-i18n="uzuma_title" class="font-bold text-sm text-white group-hover:text-primary transition-colors">Tabasco UZUMA | Smart City & IoT Gubernamental</h3>
+                                        <p data-i18n="uzuma_desc" class="mt-2 text-slate-400 text-[10px] leading-relaxed line-clamp-3">LPR + red IoT LoRa. Primer Smart City de esta escala en Tabasco.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1 pt-1">
+                                        <span class="text-[9px] px-2 py-0.5 bg-slate-800 text-slate-400 rounded-full font-mono">LPR · IoT · LoRa</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Daimler -->
                             <div class="project-entry group bg-card-dark border border-slate-800 rounded-2xl overflow-hidden hover:border-primary/40 transition-all shadow-xl hover:-translate-y-1" data-category="industrial">
                                 <div class="p-6 space-y-4">
@@ -575,40 +696,44 @@
                     <!-- Skills & Tech Section -->
                     <section id="skills" class="bg-card-dark border border-slate-800 rounded-2xl p-8 space-y-8 fade-in-up" style="animation-delay: 0.4s;">
                         <h2 class="text-xl font-bold text-white flex items-center gap-3">
-                            <span class="material-symbols-outlined text-primary">skillet</span> <span data-i18n="tech_expertise">Expertise Tecnológico</span>
+                            <span class="material-symbols-outlined text-primary">skillet</span> <span data-i18n="tech_expertise">Stack Tecnológico</span>
                         </h2>
                         
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
                             <div class="space-y-4">
-                                <div data-i18n="leadership" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Liderazgo</div>
+                                <div data-i18n="leadership" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Liderazgo & PM</div>
                                 <ul class="space-y-2 text-sm text-slate-300">
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Tech Mentorship</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Agile Management</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> ROI Strategy</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> React.js</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Node.js / Express</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> REST APIs</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Flutter / Dart</li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
                                 <div data-i18n="development" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Desarrollo</div>
                                 <ul class="space-y-2 text-sm text-slate-300">
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Node.js / Python</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Flutter / Dart</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> PostgreSQL</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Prisma ORM</li>
                                     <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Shopify Liquid</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Python</li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
-                                <div data-i18n="hardware_ai" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Hardware/AI</div>
+                                <div data-i18n="hardware_ai" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Cloud & IA</div>
                                 <ul class="space-y-2 text-sm text-slate-300">
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> IoT Architecture</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Computer Vision</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Edge Computing</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Google Cloud Run</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Firebase / Firestore</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Gemini / OpenAI</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Railway / Docker</li>
                                 </ul>
                             </div>
                             <div class="space-y-4">
-                                <div data-i18n="management" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Management</div>
+                                <div data-i18n="management" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Metodología</div>
                                 <ul class="space-y-2 text-sm text-slate-300">
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Global Rollouts</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Multimillion Budgets</li>
-                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Infrastructure</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Agile / Scrum</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> CI/CD (GitHub Actions)</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Deploy en producción</li>
+                                    <li class="flex items-center gap-2"><span class="size-1 rounded-full bg-primary"></span> Soporte post-entrega</li>
                                 </ul>
                             </div>
                         </div>
