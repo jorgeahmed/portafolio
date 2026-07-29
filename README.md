@@ -12,7 +12,7 @@ Professional integrated portfolio and CV with a premium "Stitch" design, featuri
 - **Optimized PDF Export**: Custom `@media print` styles for clean, professional multi-page document generation.
 - **Integrated Content**: Dynamically curated projects combined with professional experience and a custom cover letter.
 - **Responsive Layout**: Designed for seamless viewing across mobile, tablet, and desktop devices.
-- **AI Chat (Gemini)**: Interactive CV assistant for recruiters (requires a valid Gemini API key).
+- **AI Chat (OpenRouter)**: Interactive CV assistant for recruiters via OpenRouter (`google/gemini-2.5-flash`).
 
 ## 🛠️ Technology Stack
 
@@ -20,26 +20,19 @@ Professional integrated portfolio and CV with a premium "Stitch" design, featuri
 - **Styling**: Tailwind CSS, Google Fonts (Inter), Material Symbols.
 - **Build Tool**: Vite.
 - **Deployment**: GitHub Pages.
+- **Chat API**: [OpenRouter](https://openrouter.ai) (`/api/v1/chat/completions`).
 
-## 🤖 Chat AI / Gemini API key
+## 🤖 Chat AI / OpenRouter
 
-The chat calls Google Gemini from the browser. If you see:
+The chat calls OpenRouter from the browser with the key in `OPENROUTER_API_KEY` (`index.html`).
 
-`Requests from referer https://jorgeahmed.github.io/ are blocked`
+- Endpoint: `https://openrouter.ai/api/v1/chat/completions`
+- Default model: `google/gemini-2.5-flash`
+- Optional override: **Configurar API Key** stores `openrouter_api_key` in `localStorage` (takes priority).
 
-the API key has **HTTP referrer** restrictions that do not allow GitHub Pages.
+Create or rotate keys at [openrouter.ai/keys](https://openrouter.ai/keys). Keep credits topped up if the chat returns 402/insufficient credits.
 
-Fix in [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials):
-
-1. Open the Gemini API key used in `index.html` (`GEMINI_API_KEY`).
-2. **Application restrictions** → **HTTP referrers (web sites)**.
-3. Add these referrers (include `https://`):
-   - `https://jorgeahmed.github.io/*`
-   - `http://localhost:*/*` (optional, for local testing)
-4. **API restrictions** → allow **Generative Language API** (or leave unrestricted).
-5. Save and wait 1–5 minutes, then hard-reload the site.
-
-Alternatively, set Application restrictions to **None**, or use **Configurar API Key** in the chat UI to store another key in `localStorage` (overrides the hardcoded one).
+> Note: a client-side key is visible in the page source. Prefer a key with spend limits, or a backend proxy for production hardening.
 
 ## 📄 How to Use for Recruitment
 
