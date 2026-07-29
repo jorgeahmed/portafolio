@@ -582,14 +582,23 @@
 <script src="cv-data.js"></script>
 <script>
 
-/* ── API KEY ─────────────────────────
-   Reemplaza el string vacío con tu key de Gemini.
-   Restríngela por dominio en: console.cloud.google.com
-   → APIs & Services → Credentials → tu key
-   → Application restrictions → HTTP referrers
-   → Añadir: jorgeahmed.github.io/*
-   ───────────────────────────────── */
-const GEMINI_API_KEY = 'AIzaSyAC0Eo_uqAyAjQIZ8-2cRbh6NDQsbDLWjA';   // ← PON TU KEY AQUÍ
+// ── API KEY ─────────────────────────────────────────────────────────────
+// Key de Gemini (AI Studio / Google Cloud).
+// Si ves "Requests from referer … are blocked", la key tiene restricciones
+// HTTP que no incluyen GitHub Pages.
+//
+// console.cloud.google.com → APIs & Services → Credentials → tu key
+//   Application restrictions → HTTP referrers (sitios web)
+//   Añadir EXACTAMENTE (con https://):
+//     https://jorgeahmed.github.io/  + asterisco de path
+//     http://localhost:  + asterisco de puerto + / + asterisco de path
+//     Ejemplo: https://jorgeahmed.github.io/*   y   http://localhost:*/*
+//   API restrictions → Generative Language API (o "Don't restrict")
+//
+// Alternativa: Application restrictions = None, o pegar otra key en
+// "Configurar API Key" (se guarda en localStorage y tiene prioridad).
+// ───────────────────────────────────────────────────────────────────────
+const GEMINI_API_KEY = 'AIzaSyAC0Eo_uqAyAjQIZ8-2cRbh6NDQsbDLWjA';
 
 /* ── COLOR MAP ─────────────────────── */
 const colorMap = {
@@ -631,6 +640,7 @@ const T = {
     chat_api_key:'Configurar API Key', chat_api_placeholder:'AIzaSy...', chat_api_save:'Guardar',
     chat_welcome:'**Bienvenido al CV interactivo de Jorge.**\n\nSoy su asistente con acceso completo a su perfil profesional. Puedes preguntarme:\n\n• ¿Qué proyectos de IA o IoT ha liderado?\n• ¿Cuál es su experiencia con clientes Fortune 500?\n• ¿Cómo encaja su perfil con una posición específica?\n\nSi eres **reclutador o empleador**, usa el botón **"Analizar vacante"** para pegar la descripción del puesto y obtener un análisis de compatibilidad detallado.',
     chat_no_key:'⚙️ Para usar el chat necesitas configurar una API key de Gemini. Obtenla gratis en aistudio.google.com',
+    chat_referer_blocked:'**La API key de Gemini bloquea este dominio.**\n\nEn [Google Cloud Console](https://console.cloud.google.com/apis/credentials) → tu key → **Application restrictions** → **HTTP referrers**, añade:\n\n• `https://jorgeahmed.github.io/*`\n• `http://localhost:*/*`\n\nGuarda los cambios (pueden tardar 1–5 min) y recarga. También puedes pegar otra key sin esa restricción con **Configurar API Key**.',
     vacancy_cta_label:'Analizar vacante para esta posición',
     vacancy_cta_sub:'Pega la descripción y evalúa compatibilidad',
     vacancy_loaded_label:'Vacante cargada',
@@ -661,6 +671,7 @@ const T = {
     chat_api_key:'Configure API Key', chat_api_placeholder:'AIzaSy...', chat_api_save:'Save',
     chat_welcome:"**Welcome to Jorge's interactive CV.**\n\nI have full access to his professional profile. You can ask me:\n\n• What AI or IoT projects has he led?\n• What's his experience with Fortune 500 clients?\n• How does his profile fit a specific role?\n\nIf you're a **recruiter or hiring manager**, use the **\"Analyze job posting\"** button to paste the job description and get a detailed compatibility analysis.",
     chat_no_key:"⚙️ To use the chat, configure a Gemini API key. Get it for free at aistudio.google.com",
+    chat_referer_blocked:'**The Gemini API key blocks this domain.**\n\nIn [Google Cloud Console](https://console.cloud.google.com/apis/credentials) → your key → **Application restrictions** → **HTTP referrers**, add:\n\n• `https://jorgeahmed.github.io/*`\n• `http://localhost:*/*`\n\nSave (may take 1–5 min) and reload. You can also paste another key without that restriction via **Configure API Key**.',
     vacancy_cta_label:'Analyze job posting',
     vacancy_cta_sub:'Paste the description and evaluate fit',
     vacancy_loaded_label:'Job posting loaded',
@@ -941,12 +952,25 @@ function observeReveal() {
 let chatHistory = [];
 let vacancyText = '';
 
+function getGeminiApiKey() {
+  // localStorage gana: permite sustituir una key hardcodeada con referrers mal configurados
+  return localStorage.getItem('gemini_api_key') || GEMINI_API_KEY || '';
+}
+
+function formatGeminiError(err) {
+  var msg = (err && err.message) ? String(err.message) : String(err || 'Error');
+  if (/referer|referrer|API_KEY_HTTP_REFERRER_BLOCKED/i.test(msg)) {
+    return T[currentLang].chat_referer_blocked;
+  }
+  return '❌ ' + msg;
+}
+
 function openChat() {
   const panel = document.getElementById('chat-panel');
   panel.classList.remove('hidden');
   updateVacancyCta();
   if (chatHistory.length === 0) {
-    const apiKey = GEMINI_API_KEY || localStorage.getItem('gemini_api_key');
+    const apiKey = getGeminiApiKey();
     if (!apiKey) { showApiConfig(); return; }
     addChatMessage('ai', T[currentLang].chat_welcome);
     renderChatSuggestions();
@@ -1011,7 +1035,7 @@ async function sendMessage() {
   if (!text) return;
   input.value = '';
 
-  const apiKey = GEMINI_API_KEY || localStorage.getItem('gemini_api_key');
+  const apiKey = getGeminiApiKey();
   if (!apiKey) { addChatMessage('ai', T[currentLang].chat_no_key); return; }
 
   addChatMessage('user', text);
@@ -1035,7 +1059,11 @@ async function sendMessage() {
   } catch (err) {
     var ind2 = document.getElementById('typing-indicator');
     if (ind2) ind2.remove();
-    addChatMessage('ai', '❌ ' + err.message);
+    // Quitar el turno de usuario fallido del historial para poder reintentar limpio
+    if (chatHistory.length && chatHistory[chatHistory.length - 1].role === 'user') {
+      chatHistory.pop();
+    }
+    addChatMessage('ai', formatGeminiError(err));
   }
 }
 
@@ -1052,7 +1080,18 @@ async function callGemini(apiKey) {
   });
   if (!res.ok) {
     const err = await res.json().catch(function() { return {}; });
-    throw new Error(err.error && err.error.message ? err.error.message : 'HTTP ' + res.status);
+    var detail = err.error && err.error.message ? err.error.message : 'HTTP ' + res.status;
+    var reason = '';
+    try {
+      var infos = (err.error && err.error.details) || [];
+      for (var i = 0; i < infos.length; i++) {
+        if (infos[i].reason) { reason = infos[i].reason; break; }
+      }
+    } catch (e) {}
+    if (reason === 'API_KEY_HTTP_REFERRER_BLOCKED' || /referer|referrer/i.test(detail)) {
+      throw new Error('API_KEY_HTTP_REFERRER_BLOCKED: ' + detail);
+    }
+    throw new Error(detail);
   }
   const data = await res.json();
   return (data.candidates && data.candidates[0] && data.candidates[0].content &&
@@ -1111,6 +1150,7 @@ function renderMarkdown(text) {
   if (!text) return '';
   text = text.replace(/```[\w]*\n?([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
   text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+  text = text.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-400 underline underline-offset-2">$1</a>');
   text = text.replace(/^### (.+)$/gm, '<h4>$1</h4>');
   text = text.replace(/^## (.+)$/gm, '<h3>$1</h3>');
   text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
@@ -1163,7 +1203,7 @@ function openApiConfig() {
 function saveApiKey() {
   const input = document.getElementById('api-key-input');
   if (!input || !input.value.trim()) return;
-  localStorage.setItem('gemini_api_key', input.value.trim()); // fallback si no hay key hardcodeada
+  localStorage.setItem('gemini_api_key', input.value.trim()); // override de la key hardcodeada
   const container = document.getElementById('chat-messages');
   if (container) container.innerHTML = '';
   chatHistory = [];
