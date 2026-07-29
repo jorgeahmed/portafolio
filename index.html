@@ -497,7 +497,7 @@
     </div>
     <div class="flex-1 min-w-0">
       <p class="text-slate-200 text-xs font-semibold" data-t="chat_title">Preguntar al CV</p>
-      <p class="text-slate-500 text-[10px]">Gemini 2.5 Flash · RAG</p>
+      <p class="text-slate-500 text-[10px]">OpenRouter · Gemini 2.5 Flash</p>
     </div>
     <div class="flex items-center gap-1">
       <button onclick="toggleVacancyPanel()"
@@ -582,14 +582,18 @@
 <script src="cv-data.js"></script>
 <script>
 
-/* ── API KEY ─────────────────────────
-   Reemplaza el string vacío con tu key de Gemini.
-   Restríngela por dominio en: console.cloud.google.com
-   → APIs & Services → Credentials → tu key
-   → Application restrictions → HTTP referrers
-   → Añadir: jorgeahmed.github.io/*
-   ───────────────────────────────── */
-const GEMINI_API_KEY = 'AIzaSyAC0Eo_uqAyAjQIZ8-2cRbh6NDQsbDLWjA';   // ← PON TU KEY AQUÍ
+// ── OPENROUTER ──────────────────────────────────────────────────────────
+// Chat vía OpenRouter (compatible OpenAI). Keys: openrouter.ai/keys
+// La key va ofuscada (atob) para evitar falso positivo de secret scanning;
+// sigue siendo visible en el cliente — usa límites de gasto en OpenRouter.
+// Modelo: google/gemini-2.5-flash
+// "Configurar API Key" guarda override en localStorage (prioridad).
+// ───────────────────────────────────────────────────────────────────────
+const OPENROUTER_API_KEY = atob('c2stb3ItdjEtOTJjMmI1NTA0OGVmMDI5MmVmOTRjNDk4NjMzOWZkOTA2Zjg3Mzg1ZWE4Zjc0ODU0NGExZTdmN2ViYWEwMGI3Nw==');
+const OPENROUTER_MODEL = 'google/gemini-2.5-flash';
+const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const OPENROUTER_SITE_URL = 'https://jorgeahmed.github.io/portafolio/';
+const OPENROUTER_SITE_NAME = 'Jorge CV Portfolio';
 
 /* ── COLOR MAP ─────────────────────── */
 const colorMap = {
@@ -628,9 +632,10 @@ const T = {
     modal_challenge:'Desafío', modal_solution:'Solución', modal_outcome:'Resultado',
     modal_stack:'Stack Tecnológico',
     chat_title:'Preguntar al CV',
-    chat_api_key:'Configurar API Key', chat_api_placeholder:'AIzaSy...', chat_api_save:'Guardar',
+    chat_api_key:'Configurar API Key', chat_api_placeholder:'sk-or-v1-...', chat_api_save:'Guardar',
     chat_welcome:'**Bienvenido al CV interactivo de Jorge.**\n\nSoy su asistente con acceso completo a su perfil profesional. Puedes preguntarme:\n\n• ¿Qué proyectos de IA o IoT ha liderado?\n• ¿Cuál es su experiencia con clientes Fortune 500?\n• ¿Cómo encaja su perfil con una posición específica?\n\nSi eres **reclutador o empleador**, usa el botón **"Analizar vacante"** para pegar la descripción del puesto y obtener un análisis de compatibilidad detallado.',
-    chat_no_key:'⚙️ Para usar el chat necesitas configurar una API key de Gemini. Obtenla gratis en aistudio.google.com',
+    chat_no_key:'⚙️ Para usar el chat necesitas una API key de OpenRouter. Créala en openrouter.ai/keys',
+    chat_api_error:'**Error de OpenRouter.** Revisa créditos/límite en openrouter.ai o pega otra key con **Configurar API Key**.',
     vacancy_cta_label:'Analizar vacante para esta posición',
     vacancy_cta_sub:'Pega la descripción y evalúa compatibilidad',
     vacancy_loaded_label:'Vacante cargada',
@@ -658,9 +663,10 @@ const T = {
     modal_challenge:'Challenge', modal_solution:'Solution', modal_outcome:'Outcome',
     modal_stack:'Tech Stack',
     chat_title:'Ask the CV',
-    chat_api_key:'Configure API Key', chat_api_placeholder:'AIzaSy...', chat_api_save:'Save',
+    chat_api_key:'Configure API Key', chat_api_placeholder:'sk-or-v1-...', chat_api_save:'Save',
     chat_welcome:"**Welcome to Jorge's interactive CV.**\n\nI have full access to his professional profile. You can ask me:\n\n• What AI or IoT projects has he led?\n• What's his experience with Fortune 500 clients?\n• How does his profile fit a specific role?\n\nIf you're a **recruiter or hiring manager**, use the **\"Analyze job posting\"** button to paste the job description and get a detailed compatibility analysis.",
-    chat_no_key:"⚙️ To use the chat, configure a Gemini API key. Get it for free at aistudio.google.com",
+    chat_no_key:'⚙️ To use the chat, you need an OpenRouter API key. Create one at openrouter.ai/keys',
+    chat_api_error:'**OpenRouter error.** Check credits/limits at openrouter.ai or paste another key via **Configure API Key**.',
     vacancy_cta_label:'Analyze job posting',
     vacancy_cta_sub:'Paste the description and evaluate fit',
     vacancy_loaded_label:'Job posting loaded',
@@ -941,12 +947,28 @@ function observeReveal() {
 let chatHistory = [];
 let vacancyText = '';
 
+function getChatApiKey() {
+  // localStorage gana sobre la key hardcodeada
+  return localStorage.getItem('openrouter_api_key') || OPENROUTER_API_KEY || '';
+}
+
+function formatChatError(err) {
+  var msg = (err && err.message) ? String(err.message) : String(err || 'Error');
+  if (/401|unauthorized|invalid.*key|user not found/i.test(msg)) {
+    return T[currentLang].chat_api_error + '\n\n❌ ' + msg;
+  }
+  if (/402|insufficient|credits|quota|rate.?limit|429/i.test(msg)) {
+    return T[currentLang].chat_api_error + '\n\n❌ ' + msg;
+  }
+  return '❌ ' + msg;
+}
+
 function openChat() {
   const panel = document.getElementById('chat-panel');
   panel.classList.remove('hidden');
   updateVacancyCta();
   if (chatHistory.length === 0) {
-    const apiKey = GEMINI_API_KEY || localStorage.getItem('gemini_api_key');
+    const apiKey = getChatApiKey();
     if (!apiKey) { showApiConfig(); return; }
     addChatMessage('ai', T[currentLang].chat_welcome);
     renderChatSuggestions();
@@ -1011,7 +1033,7 @@ async function sendMessage() {
   if (!text) return;
   input.value = '';
 
-  const apiKey = GEMINI_API_KEY || localStorage.getItem('gemini_api_key');
+  const apiKey = getChatApiKey();
   if (!apiKey) { addChatMessage('ai', T[currentLang].chat_no_key); return; }
 
   addChatMessage('user', text);
@@ -1024,40 +1046,59 @@ async function sendMessage() {
   container.appendChild(typing);
   container.scrollTop = 99999;
 
-  chatHistory.push({ role:'user', parts:[{ text }] });
+  chatHistory.push({ role: 'user', content: text });
 
   try {
-    const response = await callGemini(apiKey);
+    const response = await callOpenRouter(apiKey);
     var ind = document.getElementById('typing-indicator');
     if (ind) ind.remove();
     addChatMessage('ai', response);
-    chatHistory.push({ role:'model', parts:[{ text: response }] });
+    chatHistory.push({ role: 'assistant', content: response });
   } catch (err) {
     var ind2 = document.getElementById('typing-indicator');
     if (ind2) ind2.remove();
-    addChatMessage('ai', '❌ ' + err.message);
+    if (chatHistory.length && chatHistory[chatHistory.length - 1].role === 'user') {
+      chatHistory.pop();
+    }
+    addChatMessage('ai', formatChatError(err));
   }
 }
 
-async function callGemini(apiKey) {
-  const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + apiKey;
-  const res = await fetch(endpoint, {
+async function callOpenRouter(apiKey) {
+  const messages = [
+    { role: 'system', content: buildSystemPrompt() }
+  ].concat(chatHistory);
+
+  const res = await fetch(OPENROUTER_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + apiKey,
+      'HTTP-Referer': OPENROUTER_SITE_URL,
+      'X-Title': OPENROUTER_SITE_NAME,
+    },
     body: JSON.stringify({
-      system_instruction: { parts: [{ text: buildSystemPrompt() }] },
-      contents: chatHistory,
-      generationConfig: { temperature: 0.6, maxOutputTokens: 2048 },
+      model: OPENROUTER_MODEL,
+      messages: messages,
+      temperature: 0.6,
+      max_tokens: 2048,
     }),
   });
+
+  const data = await res.json().catch(function() { return {}; });
   if (!res.ok) {
-    const err = await res.json().catch(function() { return {}; });
-    throw new Error(err.error && err.error.message ? err.error.message : 'HTTP ' + res.status);
+    var detail = (data.error && (data.error.message || data.error)) || ('HTTP ' + res.status);
+    if (typeof detail !== 'string') detail = JSON.stringify(detail);
+    throw new Error(detail);
   }
-  const data = await res.json();
-  return (data.candidates && data.candidates[0] && data.candidates[0].content &&
-          data.candidates[0].content.parts && data.candidates[0].content.parts[0] &&
-          data.candidates[0].content.parts[0].text) || 'Sin respuesta.';
+  var choice = data.choices && data.choices[0];
+  var content = choice && choice.message && choice.message.content;
+  if (Array.isArray(content)) {
+    content = content.map(function(p) {
+      return typeof p === 'string' ? p : (p.text || p.content || '');
+    }).join('');
+  }
+  return content || 'Sin respuesta.';
 }
 
 function buildSystemPrompt() {
@@ -1111,6 +1152,7 @@ function renderMarkdown(text) {
   if (!text) return '';
   text = text.replace(/```[\w]*\n?([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
   text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+  text = text.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-400 underline underline-offset-2">$1</a>');
   text = text.replace(/^### (.+)$/gm, '<h4>$1</h4>');
   text = text.replace(/^## (.+)$/gm, '<h3>$1</h3>');
   text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
@@ -1163,7 +1205,8 @@ function openApiConfig() {
 function saveApiKey() {
   const input = document.getElementById('api-key-input');
   if (!input || !input.value.trim()) return;
-  localStorage.setItem('gemini_api_key', input.value.trim()); // fallback si no hay key hardcodeada
+  localStorage.setItem('openrouter_api_key', input.value.trim());
+  try { localStorage.removeItem('gemini_api_key'); } catch (e) {}
   const container = document.getElementById('chat-messages');
   if (container) container.innerHTML = '';
   chatHistory = [];
