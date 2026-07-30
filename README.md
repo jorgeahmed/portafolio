@@ -9,7 +9,7 @@ Professional integrated portfolio and CV with a premium "Stitch" design, featuri
 
 - **Premium Dashbord Design**: High-end industrial aesthetic inspired by "Stitch" UI.
 - **Bilingual Support (EN/ES)**: Instant dynamic swappability between English and Spanish.
-- **Optimized PDF Export**: Custom `@media print` styles for clean, professional multi-page document generation.
+- **Optimized PDF Export**: ATS-friendly print layout (single-column, labeled contact fields) for recruiter bots and applicant tracking systems.
 - **Integrated Content**: Dynamically curated projects combined with professional experience and a custom cover letter.
 - **Responsive Layout**: Designed for seamless viewing across mobile, tablet, and desktop devices.
 - **AI Chat (OpenRouter)**: Interactive CV assistant for recruiters via OpenRouter (`google/gemini-2.5-flash`).
@@ -38,7 +38,7 @@ Create or rotate keys at [openrouter.ai/keys](https://openrouter.ai/keys). Keep 
 
 1. **Visit the Web App**: Navigate to the live link.
 2. **Select Language**: Use the **EN / ES** toggle in the header.
-3. **Print as PDF**: Click the **"Print PDF"** button and select "Save as PDF" in the browser's print dialog.
+3. **Print ATS PDF**: Click **"Imprimir ATS"** / **"Print ATS"** and choose "Save as PDF". The print view is single-column with labeled Phone/Email/Location fields for recruiter bots.
 4. **Ask the CV**: Use the Chat AI button to query experience, projects, or analyze a job posting.
 
 ## 👤 About Jorge Lopez
